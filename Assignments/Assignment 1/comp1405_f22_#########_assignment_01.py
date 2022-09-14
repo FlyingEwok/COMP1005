@@ -11,8 +11,15 @@ def createPygameWindow(x: int, y: int) -> rect:
     return window
 def drawMyAssignedImage(surface):
     """Draws a image to the pygame window"""
-    rectColour = (82,144,60) # Green
-    pygame.draw.rect(surface, rectColour, pygame.Rect(328, 111, 74, 316))
+    backGroundColour = (255,255,255) # White RGB 
+    rectColour = (82,144,60) # Green RGB
+    polygonColour = (131, 117, 175)
+
+    polygonVerticies = [(321,116), (241,116), (320,2), (401,106), (402, 214)]
+
+    surface.fill(backGroundColour) # Set background colour to white
+    pygame.draw.rect(surface, rectColour, pygame.Rect(318, 111, 84, 316)) # Draw Rectangle
+    pygame.draw.polygon(surface, polygonColour, polygonVerticies)
     pygame.display.flip()
 
 # Main
@@ -25,5 +32,5 @@ while true: # Loop through infinently
     for event in pygame.event.get(): 
         if event.type == pygame.QUIT:
             pygame.quit()
-            exit(0) # Removes text dumb to the shell
+            exit(0) # Removes text dump from the shell
         drawMyAssignedImage(window)
