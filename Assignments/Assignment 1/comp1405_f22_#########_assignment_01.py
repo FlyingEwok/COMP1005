@@ -12,7 +12,7 @@ def createPygameWindow(x: int, y: int) -> rect:
 def drawMyAssignedImage(surface):
     """Draws a image to the pygame window"""
     rectColour = (82,144,60) # Green
-    pygame.draw.rect(surface, rectColour, pygame.Rect(30, 30, 60, 60))
+    pygame.draw.rect(surface, rectColour, pygame.Rect(328, 111, 74, 316))
     pygame.display.flip()
 
 # Main
