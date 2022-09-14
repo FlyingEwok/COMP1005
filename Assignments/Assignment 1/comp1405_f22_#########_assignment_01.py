@@ -15,10 +15,10 @@ def drawMyAssignedImage(surface):
     rectColour = (82,144,60) # Green RGB
     polygonColour = (131, 117, 175)
 
-    polygonVerticies = [(321,116), (241,116), (320,2), (401,106), (402, 214)]
+    polygonVerticies = [(320,106), (240,106), (321,0), (400,106), (400, 213)]
 
     surface.fill(backGroundColour) # Set background colour to white
-    pygame.draw.rect(surface, rectColour, pygame.Rect(318, 111, 84, 316)) # Draw Rectangle
+    pygame.draw.rect(surface, rectColour, pygame.Rect(320, 106, 81, 321)) # Draw Rectangle
     pygame.draw.polygon(surface, polygonColour, polygonVerticies)
     pygame.display.flip()
 
