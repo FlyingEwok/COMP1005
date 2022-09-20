@@ -11,7 +11,8 @@ def createPygameWindow(x: int, y: int) -> pygame.surface:
     window = pygame.display.set_mode(size=(x,y))
     return window
 
-def drawMyAssignedImage(surface: pygame.surface) -> None:
+# Exercise A Function
+def drawImage(surface: pygame.surface) -> None:
     """Draws a image to the pygame window"""
     backgroundColour = (158,59,40) # Red RGB 
     outerRightSemiCircleColour = (76,131,187) # Blue RGB
@@ -22,14 +23,14 @@ def drawMyAssignedImage(surface: pygame.surface) -> None:
 
     # Draw!
     surface.fill(backgroundColour) # Set background colour to Red
-    pygame.draw.rect(surface, outerLeftSemiCircleColour,pygame.Rect(69, 69, 162, 162)) # Draw Rectangle
+    pygame.draw.rect(surface, middleSemiCircleColour,pygame.Rect(96, 96, 108, 108)) # Draw Rectangle to fill in the middle semi circle (If there was no visual artifacts then it wouldn't be noticabe as a rectangle)
+    # Draw the semi circles
+    pygame.draw.arc(surface,outerRightSemiCircleColour, pygame.Rect(69, 69, 162, 162), -math.pi/2, -(3*math.pi)/2 , 27) 
+    pygame.draw.arc(surface,outerLeftSemiCircleColour, pygame.Rect(69, 69, 162, 162), math.pi/2, (3*math.pi)/2 , 27) 
+    pygame.draw.arc(surface,innerLeftSemiCircleColour, pygame.Rect(96, 96, 108, 108), math.pi/2, (3*math.pi)/2 , 108) 
+    pygame.draw.arc(surface,innerRightSemiCircleColour, pygame.Rect(96, 96, 108, 108), -math.pi/2, -(3*math.pi)/2 , 27) 
 
-    pygame.draw.arc(surface,outerRightSemiCircleColour, pygame.Rect(69, 69, 162, 162), -math.pi/2, -(3*math.pi)/2 , 27) # Draw the first semi circle
     pygame.display.flip() # Update the display so the drawn images show
-
-def saveFrameAsImage(surface: pygame.surface, fileName) -> None:
-    """When called, the current frame will be saved"""
-    pygame.image.save(surface, fileName)
 
 # Main
 
@@ -41,8 +42,7 @@ while True: # Loop through infinently
     # Constantly check if x button is clicked
     for event in pygame.event.get(): 
         if event.type == pygame.QUIT:
-            #saveFrameAsImage(window, imageFileName) # Save the last frame as image (In this case only frame)
             pygame.quit()
             exit(0) # Removes text dump from the shell
-        drawMyAssignedImage(window)
+        drawImage(window)
 
