@@ -14,6 +14,7 @@ def createPygameWindow(x: int, y: int) -> pygame.surface:
 # Exercise A Functions
 def drawImage(surface: pygame.surface) -> None:
     """Draws a image to the pygame window"""
+    # Variables
     backgroundColour = (158,59,40) # Red RGB 
     outerRightSemiCircleColour = (76,131,187) # Blue RGB
     innerRightSemiCircleColour = (214,174,77) # Yellow RGB
