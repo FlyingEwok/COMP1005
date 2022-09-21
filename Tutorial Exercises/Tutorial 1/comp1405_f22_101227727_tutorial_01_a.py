@@ -11,7 +11,7 @@ def createPygameWindow(x: int, y: int) -> pygame.surface:
     window = pygame.display.set_mode(size=(x,y))
     return window
 
-# Exercise A Function
+# Exercise A Functions
 def drawImage(surface: pygame.surface) -> None:
     """Draws a image to the pygame window"""
     backgroundColour = (158,59,40) # Red RGB 
@@ -32,17 +32,19 @@ def drawImage(surface: pygame.surface) -> None:
 
     pygame.display.flip() # Update the display so the drawn images show
 
+def runExerciseA() -> None:
+    """Executes a series of code to run the program"""
+    # Draw Image
+    window = createPygameWindow(300,300) # Make a 300 by 300 pygame window
+    # Create image while keeping the window open and close if the X button is clicked
+    while True: # Loop through infinitely
+        # Constantly check if x button is clicked
+        for event in pygame.event.get(): 
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit(0) # Removes text dump from the shell
+            drawImage(window)
 # Main
+runExerciseA()
 
-imageFileName = 'assigned_image_for_101227727.png' # Set variable as string for image file name
-# Draw Image
-window = createPygameWindow(300,300) # Make a 300 by 300 pygame window
-# Create image while keeping the window open and close if the X button is clicked
-while True: # Loop through infinently
-    # Constantly check if x button is clicked
-    for event in pygame.event.get(): 
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            exit(0) # Removes text dump from the shell
-        drawImage(window)
 
