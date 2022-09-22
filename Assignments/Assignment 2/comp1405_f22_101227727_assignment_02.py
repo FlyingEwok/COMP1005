@@ -32,12 +32,12 @@ def applyAlgorithim(userinput: float) -> chr:
     print(f"{thirdOperation} added to {thirdOperation} + 1 is: {operations}")
     
     # Performs a multiplication of 2.516229 to the operation
-    fithOperation = operations = operations * 2.516229
+    fifthOperation = operations = operations * 2.516229
     print(f"{fourthOperation} multiplied by 2.516229 is: {operations}")
     
     # Converts the float to an integer
     sixthOperation = operations = int(operations)
-    print(f"{fithOperation} as an integer is: {operations}")
+    print(f"{fifthOperation} as an integer is: {operations}")
     
     # Converts the integer into a character
     operations = chr(operations)
