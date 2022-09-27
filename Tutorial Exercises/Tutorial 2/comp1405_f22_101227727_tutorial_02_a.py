@@ -32,6 +32,7 @@ def askUserPersonalInfo() -> list:
     """Obtains the name, current year, and birth year from the user and returns information in a list"""
     usersName = input("\nWhat is your name? ")
 
+    # Current Year
     currentYear = input("\nWhat year is it? ")
     while __checkIfConvertsToInt(currentYear) == False: # Check if currentYear can be converted to int
         # Ask for the year again
@@ -39,6 +40,7 @@ def askUserPersonalInfo() -> list:
     else:
         currentYear = int(currentYear) # Convert
 
+    # Birth Year
     birthYear = input("\nWhat year were you born? ")
     while __checkIfConvertsToInt(birthYear) == False: # Check if birthYear can be converted to int
         # Ask for the birth year again
@@ -46,11 +48,23 @@ def askUserPersonalInfo() -> list:
     else:
         birthYear = int(birthYear) # Convert
 
+    # Birthday this year
     birthdayThisYear = input("\nDid you have a birthday this year? True/False: ")
-    birthdayThisYear = __convertToBool(birthdayThisYear) # Check if user typed True or False and if they did convert to bool
+    # Check if the user typed the correct string
+    while not birthdayThisYear == "True" and not birthdayThisYear == "False":
+        print(birthdayThisYear)
+        birthdayThisYear = input("\nInvalid Input\nPlease type 'True' or 'False'\nDid you have a birthday this year? True/False: ") # ask again
+    else:
+        birthdayThisYear = __convertToBool(birthdayThisYear) # Check if user typed True or False and if they did convert to bool
 
-    bornOnFeb29 = input("\nWere you born on February 29th? True/False: ") 
-    bornOnFeb29 = __convertToBool(bornOnFeb29) # Check if user typed True or False and if they did convert to bool
+    # Born on Feb 29th
+    bornOnFeb29 = input("\nWere you born on February 29th? True/False: ") # Ask user for input
+    # Check if the user typed the correct string
+    while not bornOnFeb29 == "True" and not bornOnFeb29 == "False":
+        print(bornOnFeb29)
+        bornOnFeb29 = input("\nInvalid Input\nPlease type 'True' or 'False'\nWere you born on February 29th? True/False: ") # ask again
+    else:
+        bornOnFeb29 = __convertToBool(bornOnFeb29) # Check if user typed True or False and if they did convert to bool
 
     # Create a list with values
     information = [usersName,currentYear,birthYear, birthdayThisYear, bornOnFeb29] # Create an empty list
