@@ -17,11 +17,19 @@ def booleanAlgorithim(A: bool, C: bool, E: bool, H: bool, L: bool, I: bool) -> b
     print(f"<{result1},{result2}>")
 
 # Variables
-A = __checkIfConvertsToBool(sys.argv[1])
-C = __checkIfConvertsToBool(sys.argv[2])
-E = __checkIfConvertsToBool(sys.argv[3])
-H = __checkIfConvertsToBool(sys.argv[4])
-L = __checkIfConvertsToBool(sys.argv[5])
-I = __checkIfConvertsToBool(sys.argv[6])
+A1 = __checkIfConvertsToBool(sys.argv[1])
+C1 = __checkIfConvertsToBool(sys.argv[2])
+E1 = __checkIfConvertsToBool(sys.argv[3])
+H1 = __checkIfConvertsToBool(sys.argv[4])
+L1 = __checkIfConvertsToBool(sys.argv[5])
+I1 = __checkIfConvertsToBool(sys.argv[6])
 
-booleanAlgorithim(A,C,E,H,L,I) # Run the logic on the variables
+A2 = __checkIfConvertsToBool(sys.argv[7])
+C2 = __checkIfConvertsToBool(sys.argv[8])
+E2 = __checkIfConvertsToBool(sys.argv[9])
+H2 = __checkIfConvertsToBool(sys.argv[10])
+L2 = __checkIfConvertsToBool(sys.argv[11])
+I2 = __checkIfConvertsToBool(sys.argv[12])
+
+booleanAlgorithim(A1,C1,E1,H1,L1,I1) # Run the logic on the variables
+booleanAlgorithim(A2,C2,E2,H2,L2,I2) # Run the logic on the variables
