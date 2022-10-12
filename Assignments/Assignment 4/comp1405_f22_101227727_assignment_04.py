@@ -1,7 +1,7 @@
 # Nicholas Garth 101227727 (Oops just realized I needed to do this with this assignment)
 
 # Sub Genre Selection: Space Opera and Super Hero
-# 10 Space Opera Films: Star Wars Revenge Of The Sith, Star Wars The Last Jedi, Star Wars Return of the Jedi, Rogue One, Star Wars The Phantom Menace, Solo, Dune, Star Wars A New Hope, Star Wars The Force Awakens, Star Wars Rise of Skywalker
+# 10 Space Opera Films: Star Wars Revenge Of The Sith, Star Wars The Last Jedi, Star Wars Return of the Jedi, Star Wars Rise of Skywalker, Star Wars The Phantom Menace, Star Wars The Empire Strikes Back, Dune, Star Wars A New Hope, Star Wars The Force Awakens, Star Wars Attack of the Clones
 # 10 Super Hero Films: Spiderman (2002), The Dark knight, Ghost Rider, Avengers, Justice League, Spiderman No Way Home, The Amazing Spiderman, The Incredible Hulk, Wonder Woman, Aquaman
 
 def __checkIfConvertsToBool(variable: str) -> bool:
@@ -12,10 +12,17 @@ def __checkIfConvertsToBool(variable: str) -> bool:
         return False
     else:
         print("Please type Yes or No as your answer\nTry Again") # Error handling
-        exit(1)
+        return None
+
+def __loopCheckConvertsToBool(question: str) -> bool:
+    """Error Handling Function in addition to __CheckIfConvertsToBool, loops the request until user enters the correct response"""
+    variable =__checkIfConvertsToBool(input(question))
+    while variable == None:
+        variable =__checkIfConvertsToBool(input(question))
+    return variable
 
 def setOfQuestionsSuperHero() -> bool:
-    """Returns a boolean of answers from the user"""
+    """Returns a list of answers as booleans from the user for Super Hero List"""
     # Define Variables
     soloSuperHeroMovie = False
     avengersOrJusticeLeague = False
@@ -28,76 +35,123 @@ def setOfQuestionsSuperHero() -> bool:
     mainCharacterTobey = False
 
     # If Super Hero Film Questions
-    soloSuperHeroMovie = __checkIfConvertsToBool(input("Is the Film a solo Super Hero Movie? Yes/No ")) # Eliminates Justice League and Avengers (Or narrows down to) (answerListSuperHero[1])
+    soloSuperHeroMovie = __loopCheckConvertsToBool("Is the Film a solo Super Hero Movie? Yes/No ") # Eliminates Justice League and Avengers (Or narrows down to) (answerListSuperHero[1])
     
     # If is not a Solo Super Hero Film
     if not soloSuperHeroMovie:
-        avengersOrJusticeLeague = __checkIfConvertsToBool(input("Does the Film have a Speedster Super Hero? Yes/No ")) # If does it's Justice League, If not Avengers (answerList[2])
-        pass
+        avengersOrJusticeLeague = __loopCheckConvertsToBool("Does the Film have a Speedster Super Hero? Yes/No ") # If does it's Justice League, If not Avengers (answerList[2])
     else: # If is a Solo Super Hero Film
         # Check if film has raging green Monster
-        ragingGreenMonster = __checkIfConvertsToBool(input("Does the Film have a raging Green Monster? Yes/No ")) # if it does the film is either The Amazing Spiderman or the Incredible Hulk (answerList[3])
+        ragingGreenMonster = __loopCheckConvertsToBool("Does the Film have a raging Green Monster? Yes/No ") # if it does the film is either The Amazing Spiderman or the Incredible Hulk (answerList[3])
         # If has a raging Green Monster
         if ragingGreenMonster:
-            antagonistOrProtagonist = __checkIfConvertsToBool(input("Is the raging Green Monster the Protagonist? Yes/No ")) # if it is the film is the Incredible Hulk, If not it's the Amazing Spiderman (answerList[4])
+            antagonistOrProtagonist = __loopCheckConvertsToBool("Is the raging Green Monster the Protagonist? Yes/No ") # if it is the film is the Incredible Hulk, If not it's the Amazing Spiderman (answerList[4])
         else:
             # If protagonist drives a motorcycle
-            protagonistMotorcycle = __checkIfConvertsToBool(input("Does the protagonist drive a motorcycle? Yes/No ")) # if protagonist does ride a motorcycle then film is either Dark Knight or Ghost Rider (answerList[5])
+            protagonistMotorcycle = __loopCheckConvertsToBool("Does the protagonist drive a motorcycle? Yes/No ") # if protagonist does ride a motorcycle then film is either Dark Knight or Ghost Rider (answerList[5])
             # Determine if it's Ghost Rider or Batman
             if protagonistMotorcycle:
-                motorcycleType = __checkIfConvertsToBool(input("Does the protagonist rely on technology? Yes/No ")) # If he does then it's Batman, otherwise it's Ghost Rider (answerList[6])
+                motorcycleType = __loopCheckConvertsToBool("Does the protagonist rely on technology? Yes/No ") # If he does then it's Batman, otherwise it's Ghost Rider (answerList[6])
             else:
                 # If the film stars Willem Dafoe
-                willemDafoe = __checkIfConvertsToBool(input("Is Willem Dafoe in the Film? Yes/No ")) # If he is then it's either Spiderman (2002), Spiderman No Way Home, or Aquaman (answerList[7])
+                willemDafoe = __loopCheckConvertsToBool("Is Willem Dafoe in the Film? Yes/No ") # If he is then it's either Spiderman (2002), Spiderman No Way Home, or Aquaman (answerList[7])
                 # Determine if Tobey Maguire is in the film otherwise
                 if willemDafoe:
-                    tobeyMaguire = __checkIfConvertsToBool(input("Is Tobey Maguire in the Film? Yes/No ")) # If he is then it's either Spiderman (2002) or Spiderman No Way Home (answerList[8])
+                    tobeyMaguire = __loopCheckConvertsToBool("Is Tobey Maguire in the Film? Yes/No ") # If he is then it's either Spiderman (2002) or Spiderman No Way Home (answerList[8])
                     # If Tobey Maguire is in the film ask if he's the main character
                     if tobeyMaguire:    
-                        mainCharacterTobey = __checkIfConvertsToBool(input("Is Tobey Maguire the main character of the Film? Yes/No ")) # If he is then the film is Spiderman (2002), if not then Spiderman No Way Home (answerList[9])
+                        mainCharacterTobey = __loopCheckConvertsToBool("Is Tobey Maguire the main character of the Film? Yes/No ") # If he is then the film is Spiderman (2002), if not then Spiderman No Way Home (answerList[9])
     answerListSuperHero = [soloSuperHeroMovie,avengersOrJusticeLeague,ragingGreenMonster,antagonistOrProtagonist,protagonistMotorcycle,motorcycleType,willemDafoe,tobeyMaguire,mainCharacterTobey]
     return answerListSuperHero
 
 def superHeroFilmAlgorithm(answerListSuperHero: list):
+    """Using information obtained in a function asking questions determine the movie in the super hero list"""
     # Checks if a Solo super hero film
-        if answerListSuperHero[0]:
-            # Determine if the film has raging Green Monster
-            if answerListSuperHero[2]:
-                # Determine if the raging green monster is the protagonist (Determines movie title!)
-                if answerListSuperHero[3]:
-                    print('"The Incredible Hulk" is the film title') 
-                else:
-                    print('"The Amazing Spiderman" is the film title.')
+    if answerListSuperHero[0]:
+        # Determine if the film has raging Green Monster
+        if answerListSuperHero[2]:
+            # Determine if the raging green monster is the protagonist (Determines movie title!)
+            if answerListSuperHero[3]:
+                print('"The Incredible Hulk" is the film title') 
             else:
-                # Determines if the protagonist has a motorcycle
-                if answerListSuperHero[4]:
-                    # Determine if the protagonist rely on technology (Determines movie title!)
-                    if answerListSuperHero[5]:
-                        print('"The Dark Knight" is the film title.')
-                    else:
-                        print('"Ghost Rider" is the film title.')
-                else:
-                    # Determine if Willem Dafoe is in the film
-                    if answerListSuperHero[6]:
-                        # Determine if the film stars Tobey Maguire and if it doesn't the film is Aquaman
-                        if answerListSuperHero[7]:
-                            # Determine if Tobey Maguire is the main character if not then the film is Spider-Man No Way Home
-                            if answerListSuperHero[8]:
-                                print('"Spider-Man (2002)" is the film title.')
-                            else:
-                                print('"Spider-Man No Way Home" is the film title.')
-                        else:
-                            print('"Aquaman" is the film title.')
-                    else:
-                        print('"Wonder Woman" is the film title.')
+                print('"The Amazing Spiderman" is the film title.')
         else:
-            # Determine if the film has a speedster (Determines movie title!)
-            if answerListSuperHero[1]: # Determined Justice League is the film
-                print('"Justice League" is the film title.')
+            # Determines if the protagonist has a motorcycle
+            if answerListSuperHero[4]:
+                # Determine if the protagonist rely on technology (Determines movie title!)
+                if answerListSuperHero[5]:
+                    print('"The Dark Knight" is the film title.')
+                else:
+                    print('"Ghost Rider" is the film title.')
             else:
-                print('"Avengers" is the film title.')
+                # Determine if Willem Dafoe is in the film
+                if answerListSuperHero[6]:
+                    # Determine if the film stars Tobey Maguire and if it doesn't the film is Aquaman
+                    if answerListSuperHero[7]:
+                        # Determine if Tobey Maguire is the main character if not then the film is Spider-Man No Way Home
+                        if answerListSuperHero[8]:
+                            print('"Spider-Man (2002)" is the film title.')
+                        else:
+                            print('"Spider-Man No Way Home" is the film title.')
+                    else:
+                        print('"Aquaman" is the film title.')
+                else:
+                    print('"Wonder Woman" is the film title.')
+    else:
+        # Determine if the film has a speedster (Determines movie title!)
+        if answerListSuperHero[1]: # Determined Justice League is the film
+            print('"Justice League" is the film title.')
+        else:
+            print('"Avengers" is the film title.')
 
-#def setOfQuestionsSpaceOpera(subGenreFilmQuestion: bool) -> bool: 
+def setOfQuestionsSpaceOpera() -> None:
+    """Asks a bunch of questions to determine which movie from the Space Opera list you're thinking of"""
+    writtenByGeorgeLucas = __loopCheckConvertsToBool("Is the film written by George Lucas? Yes/No ") # Eliminates all Disney Star Wars films, and Dune
+    # If it is written by George Lucas ask if he directed them
+    if writtenByGeorgeLucas:
+        directedByGeorgeLucas = __loopCheckConvertsToBool("Is the film directed by George Lucas? Yes/No ") # Determine if it's a prequel star wars film or an original 
+        # if it is directed by George it's a prequel
+        if directedByGeorgeLucas:
+            jarJarBinksProminent = __loopCheckConvertsToBool("Is Jar Jar Binks a prominent character in this film? Yes/No ") 
+            # If Jar Jar is prominent then it Phantom Menace otherwise Revenge of the Sith
+            if jarJarBinksProminent:
+                print('"Star Wars The Phantom Menace" is the film title.')
+            else:
+                # If not Jar Jar Prominent determine if Attack of the Clones or Revenge of the Sith
+                tatooineProminent = __loopCheckConvertsToBool("Is Tatooine a prominent planet in this film? Yes/No ")
+                if tatooineProminent: # If tatooine is prominent location of the film then AOTC or ANH otherwise ROTS
+                    # Check Obi Wan actor to determine if AOTC or ANH
+                    obiWanActor = __loopCheckConvertsToBool("Is Ewan McGregor Obi-Wan Kenobi in this film? Yes/No ")
+                    if obiWanActor:
+                        print('"Star Wars Attack of the Clones" is the film title.')
+                    else:
+                        print('"Star Wars A New Hope" is the film title.')
+                else:
+                    print('"Star Wars Revenge of The Sith" is the film title.')
+        else:
+            # If Luke has his real hand it's TESB if not its ROTJ
+            lukesHand = __loopCheckConvertsToBool("Does Luke have his real hand in this film? Yes/No ")
+            if lukesHand:
+                print('"Star Wars The Empire Strikes Back" is the film title.')
+            else:
+                print('"Star Wars Return Of The Jedi" is the film title.')
+    else:
+        # If made by Disney then must be a Star Wars Sequel if not then the only other film it can be is Dune
+        madeByDisney = __loopCheckConvertsToBool("Is the film made by Disney? Yes/No ")
+        if madeByDisney:
+            snokeInFilm = __loopCheckConvertsToBool("Is Supreme Leader Snoke in the film? Yes/No ")
+            # If snoke is not in the film then it has to be ROS if he is it can be TFA or TLJ
+            if snokeInFilm:
+                directedByRianJohnson = input("Is the film directed by Rian Johnson? Yes/No ")
+                # If directed by Rian Johnson then TLJ otherwise TFA
+                if directedByRianJohnson:
+                    print('"Star Wars The Last Jedi" is the film title.')
+                else:
+                    print('"Star Wars The Force Awakens" is the film title.')
+            else:
+                print('"Star Wars The Rise of Skywalker" is the film title.')
+        else:
+            print('"Dune" is the film title.')
 
 def performAlgorithm(superHero: bool) -> str:    
     # Determine the Genre of the Film
@@ -105,10 +159,10 @@ def performAlgorithm(superHero: bool) -> str:
         answerListSuperHero = setOfQuestionsSuperHero()
         superHeroFilmAlgorithm(answerListSuperHero)
     else: # If Space Opera
-        pass
+        setOfQuestionsSpaceOpera()
 
 # Main
 
 # Genre Question
-subGenreFilmQuestion = __checkIfConvertsToBool(input("Does the film take place on planet Earth? Yes/No "))
+subGenreFilmQuestion = __loopCheckConvertsToBool("Does the film take place on planet Earth? Yes/No ")
 performAlgorithm(subGenreFilmQuestion)
