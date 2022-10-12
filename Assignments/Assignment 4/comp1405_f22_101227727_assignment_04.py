@@ -1,8 +1,31 @@
 # Nicholas Garth 101227727 (Oops just realized I needed to do this with this assignment)
 
 # Sub Genre Selection: Space Opera and Super Hero
-# 10 Space Opera Films: Star Wars Revenge Of The Sith, Star Wars The Last Jedi, Star Wars Return of the Jedi, Star Wars Rise of Skywalker, Star Wars The Phantom Menace, Star Wars The Empire Strikes Back, Dune, Star Wars A New Hope, Star Wars The Force Awakens, Star Wars Attack of the Clones
-# 10 Super Hero Films: Spiderman (2002), The Dark knight, Ghost Rider, Avengers, Justice League, Spiderman No Way Home, The Amazing Spiderman, The Incredible Hulk, Wonder Woman, Aquaman
+
+# 10 Space Opera Films and distinguishing elements: 
+# 1. Star Wars Revenge Of The Sith (Directed and Written By George Lucas; Not Tatooine Prominent)
+# 2. Star Wars The Last Jedi (Made By Disney; Snoke In Film; Directed by Rian Johnson)
+# 3. Star Wars Return of the Jedi (Directed By George Lucas)
+# 4. Star Wars Rise of Skywalker (Made By Disney)
+# 5. Star Wars The Phantom Menace (Directed and Written By George Lucas; Jar Jar Binks Prominent)
+# 6. Star Wars The Empire Strikes Back (Directed By George Lucas; Luke has real hand)
+# 7. Dune (Not Star Wars)
+# 8. Star Wars A New Hope (Directed and Written By George Lucas)
+# 9. Star Wars The Force Awakens (Made By Disney; Snoke In Film)
+# 10. Star Wars Attack of the Clones (Directed and Written By George Lucas; Ewan Mcgregor Obi-Wan)
+
+
+# 10 Super Hero Films and distinguishing elements: 
+# 1. Spiderman (2002) (Solo Film; Willem Dafoe; Tobey Maguire; Tobey Magure as protagonist)
+# 2. The Dark knight (Solo Film; protagonist motorcycle; rely on tech)
+# 3. Ghost Rider (Solo Film; protagonist motorcycle)
+# 4. Avengers (No Speedster)
+# 5. Justice League (Speedster)
+# 6. Spiderman No Way Home (Solo Film; Willem Dafoe; Tobey Maguire)
+# 7. The Amazing Spiderman (Solo Film; raging green monster antagonist)
+# 8. The Incredible Hulk (Solo Film; raging green monster protagonist)
+# 9. Wonder Woman (Solo Film)
+# 10. Aquaman (Solo Film; Willem Dafoe)
 
 def __checkIfConvertsToBool(variable: str) -> bool:
     """Checks if given variable can be converted to a bool and then returns a boolean"""
@@ -29,7 +52,7 @@ def setOfQuestionsSuperHero() -> bool:
     ragingGreenMonster = False
     antagonistOrProtagonist = False
     protagonistMotorcycle = False
-    motorcycleType = False
+    relyOnTech = False
     willemDafoe = False
     tobeyMaguire = False
     mainCharacterTobey = False
@@ -51,7 +74,7 @@ def setOfQuestionsSuperHero() -> bool:
             protagonistMotorcycle = __loopCheckConvertsToBool("Does the protagonist drive a motorcycle? Yes/No ") # if protagonist does ride a motorcycle then film is either Dark Knight or Ghost Rider (answerList[5])
             # Determine if it's Ghost Rider or Batman
             if protagonistMotorcycle:
-                motorcycleType = __loopCheckConvertsToBool("Does the protagonist rely on technology? Yes/No ") # If he does then it's Batman, otherwise it's Ghost Rider (answerList[6])
+                relyOnTech = __loopCheckConvertsToBool("Does the protagonist rely on technology? Yes/No ") # If he does then it's Batman, otherwise it's Ghost Rider (answerList[6])
             else:
                 # If the film stars Willem Dafoe
                 willemDafoe = __loopCheckConvertsToBool("Is Willem Dafoe in the Film? Yes/No ") # If he is then it's either Spiderman (2002), Spiderman No Way Home, or Aquaman (answerList[7])
@@ -61,7 +84,7 @@ def setOfQuestionsSuperHero() -> bool:
                     # If Tobey Maguire is in the film ask if he's the main character
                     if tobeyMaguire:    
                         mainCharacterTobey = __loopCheckConvertsToBool("Is Tobey Maguire the main character of the Film? Yes/No ") # If he is then the film is Spiderman (2002), if not then Spiderman No Way Home (answerList[9])
-    answerListSuperHero = [soloSuperHeroMovie,avengersOrJusticeLeague,ragingGreenMonster,antagonistOrProtagonist,protagonistMotorcycle,motorcycleType,willemDafoe,tobeyMaguire,mainCharacterTobey]
+    answerListSuperHero = [soloSuperHeroMovie,avengersOrJusticeLeague,ragingGreenMonster,antagonistOrProtagonist,protagonistMotorcycle,relyOnTech,willemDafoe,tobeyMaguire,mainCharacterTobey]
     return answerListSuperHero
 
 def superHeroFilmAlgorithm(answerListSuperHero: list):
@@ -142,7 +165,7 @@ def setOfQuestionsSpaceOpera() -> None:
             snokeInFilm = __loopCheckConvertsToBool("Is Supreme Leader Snoke in the film? Yes/No ")
             # If snoke is not in the film then it has to be ROS if he is it can be TFA or TLJ
             if snokeInFilm:
-                directedByRianJohnson = input("Is the film directed by Rian Johnson? Yes/No ")
+                directedByRianJohnson = __loopCheckConvertsToBool("Is the film directed by Rian Johnson? Yes/No ")
                 # If directed by Rian Johnson then TLJ otherwise TFA
                 if directedByRianJohnson:
                     print('"Star Wars The Last Jedi" is the film title.')
