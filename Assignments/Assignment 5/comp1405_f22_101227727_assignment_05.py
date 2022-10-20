@@ -39,8 +39,6 @@ def configurePygame() -> pygame.surface:
 
     # Import Image
     srcImg = pygame.image.load(sys.argv[1])
-
-
     
     # Feel free to play with these values as well :)
     scaleFactor = 4 # The factor to scale the pointillism up to! (If your image is big then you may not want this factor to be any higher than 1, but for the requirements of the assignment it has to be 4)
