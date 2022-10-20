@@ -9,7 +9,7 @@
             "type": "python",
             "request": "launch",
             "program": "${file}",
-            "args": ["69"],
+            "args": ["/home/nicholas/Documents/VSCode Workspaces/COMP1005/index.jpg"],
             "console": "integratedTerminal",
             "justMyCode": true
         }
