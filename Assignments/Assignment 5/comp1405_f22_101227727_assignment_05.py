@@ -6,6 +6,7 @@ def saveFrameAsImage(surface: pygame.surface, fileName) -> None:
     pygame.image.save(surface, fileName)
 
 def drawPointillism(window: pygame.surface, srcImg, width: int, height: int, scaleFactor: int) -> None:
+    """Draws the pointillism, is called by the configure pygame function"""
     # RGB values
     red = (255, 0, 0)
     green = (0, 255, 0)
