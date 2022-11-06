@@ -93,8 +93,8 @@ newMousePosition = (0,0)
 selectionRectangle = None
 rectangleDragging = False
 
-temp = []
-temp2 = []
+coordArr = []
+
 
 # RGB Values
 RED = pygame.Color(255,0,0)
@@ -116,11 +116,11 @@ while not exit_flag: # Loop through until flag is set to True
     drawSelectionRectangle(window, selectionRectangle)
     if not selectionRectangle: 
         if coordToNegate != None:
-            temp.append(coordToNegate)
+            coordArr.append(coordToNegate)
             print("appending", coordToNegate)
             coordToNegate = None
         # Allow for multiple selections
-        for coord in temp:
+        for coord in coordArr:
             negateImage(window, srcImg, coord)
     pygame.display.flip()
 
