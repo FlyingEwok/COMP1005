@@ -87,6 +87,7 @@ def negateImage(window: pygame.surface, srcImg: pygame.surface, coordToNegate: t
 # Variables 
 srcImg = pygame.image.load(sys.argv[1])
 window = createPygameWindow(srcImg)
+imageFileName = "Negated.png"
 
 initialMousePosition = (0,0)
 newMousePosition = (0,0)
@@ -106,6 +107,7 @@ while not exit_flag: # Loop through until flag is set to True
     # Constantly check if x button is clicked
     for event in pygame.event.get(): 
         if event.type == pygame.QUIT:
+            saveFrameAsImage(window, imageFileName) # Save the last frame as image (In this case only frame)
             exit_flag = True # Set flag to true so program can terminate
         
         selectionRectangle, rectangleDragging, initialMousePosition, newMousePosition, coordToNegate  = selectPositionOnScreen(event, selectionRectangle, rectangleDragging, initialMousePosition, newMousePosition) # Select the position on the screen
