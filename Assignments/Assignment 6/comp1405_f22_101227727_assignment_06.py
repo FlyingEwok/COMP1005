@@ -9,6 +9,61 @@ def createPygameWindow() -> pygame.surface:
     window = pygame.display.set_mode((1280, 720))
     return window
 
+# Logic Functions
+def playerMove(boardDimensions: tuple, playerCoords: tuple, diceRoll: int) -> tuple:
+    """Moves the player on the board by the amount of the dice roll"""
+    newYPos = playerCoords[1]
+    newXPos = playerCoords[0]
+
+    nextPos = playerCoords[0] + diceRoll
+    if nextPos >= boardDimensions[0]:
+        newYPos += 1
+    
+    newXPos = nextPos % boardDimensions[0]
+
+    return (newXPos, newYPos)
+
+def hasPlayerWon(boardDimensions: tuple, coords: tuple) -> bool:
+    """Checks if a player has won"""
+    # Win when new player coords >= (6,7)
+    (boardX, boardY) = boardDimensions
+    (playerX, playerY) = coords
+    print("Board:", (boardX, boardY), "Player:", (playerX, playerY))
+    if playerY >= boardY-1:
+        print("Last Row (or Greater)")
+        if playerX >= boardX-1 or playerY > boardY-1:
+            print("Player Won")
+            return True
+    return False
+
+def playerTurn(boardDimensions: tuple, playerCoords: tuple) -> tuple:
+    """Initiates player one turn"""
+    diceRole = diceRoll()
+    if not diceRole == 5:
+        newCoords = playerMove(boardDimensions, playerCoords, diceRole)
+    else:
+        newCoords = playerCoords
+    
+    playerWon = hasPlayerWon(boardDimensions, playerCoords)
+    if playerWon:
+        newCoords = (6, 5)
+
+    return (diceRole, newCoords, playerWon)
+
+def diceRoll() -> int:
+    """Rolls a die"""
+    diceRoll = random.randint(1,6)
+    return diceRoll
+
+# Draw Functions
+def playerWonDraw(hasPlayerWon: bool, player):
+    """Draws text on screen if a player has won"""
+    if hasPlayerWon:
+        pygame.font.init()
+        myFont = pygame.font.SysFont('Comic Sans MS', 30)
+        winStatement = myFont.render(f"Player {player} has won!!", False, (255,255,255))
+        window.blit(winStatement, (961, 100))
+
 def drawCheckerboard(window: pygame.surface, boardDimensions: tuple) -> tuple:
     """Draws the game board on to the window"""
     black = (0, 0, 0)
@@ -46,6 +101,7 @@ def drawCheckerboard(window: pygame.surface, boardDimensions: tuple) -> tuple:
     return (boardWidth, boardHeight)
 
 def drawPlayerObject(window: pygame.surface, boardDimensions: tuple, boardDimensionsInPixels: tuple, playerCoords: tuple, player1: bool) -> None:
+    """Draws the player"""
     darkGrey = (48, 48, 48, 255)
     red = (255, 0, 0)
 
@@ -68,59 +124,6 @@ def drawPlayerObject(window: pygame.surface, boardDimensions: tuple, boardDimens
 
     # Draw objects
     window.blit(player, (xOffSet + (x*(boardDimensionsInPixels[0]/verticalSquareCount)), yOffSet + y*(boardDimensionsInPixels[1]/horizontalSquareCount)))
-
-def playerMove(boardDimensions: tuple, playerCoords: tuple, diceRoll: int) -> tuple:
-    """Moves the player on the board by the amount of the dice roll"""
-    newYPos = playerCoords[1]
-    newXPos = playerCoords[0]
-
-    nextPos = playerCoords[0] + diceRoll
-    if nextPos >= boardDimensions[0]:
-        newYPos += 1
-    
-    newXPos = nextPos % boardDimensions[0]
-
-    return (newXPos, newYPos)
-
-def hasPlayerWon(boardDimensions: tuple, coords: tuple) -> bool:
-    """Checks if a player has won"""
-    # Win when new player coords >= (6,7)
-    (boardX, boardY) = boardDimensions
-    (playerX, playerY) = coords
-    print("Board:", (boardX, boardY), "Player:", (playerX, playerY))
-    if playerY >= boardY-1:
-        print("Last Row (or Greater)")
-        if playerX >= boardX-1 or playerY > boardY-1:
-            print("Player Won")
-            return True
-    return False
-
-def playerWonDraw(hasPlayerWon: bool, player):
-    """Draws text on screen if a player has won"""
-    if hasPlayerWon:
-        pygame.font.init()
-        myFont = pygame.font.SysFont('Comic Sans MS', 30)
-        winStatement = myFont.render(f"Player {player} has won!!", False, (255,255,255))
-        window.blit(winStatement, (961, 100))
-
-def playerTurn(boardDimensions: tuple, playerCoords: tuple) -> tuple:
-    """Initiates player one turn"""
-    diceRole = diceRoll()
-    if not diceRole == 5:
-        newCoords = playerMove(boardDimensions, playerCoords, diceRole)
-    else:
-        newCoords = playerCoords
-    
-    playerWon = hasPlayerWon(boardDimensions, playerCoords)
-    if playerWon:
-        newCoords = (6, 5)
-
-    return (diceRole, newCoords, playerWon)
-
-def diceRoll() -> int:
-    """Rolls a die"""
-    diceRoll = random.randint(1,6)
-    return diceRoll
 
 def diceRollDrawCount(diceRoll: int, player1: bool) -> None:
     """Draw diceroll num on screen"""
