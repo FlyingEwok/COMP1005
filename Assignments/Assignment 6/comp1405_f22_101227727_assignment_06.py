@@ -145,7 +145,7 @@ def diceRollSkipDraw(player1: bool) -> None:
 
 # Main
 window = createPygameWindow()
-# clock = pygame.time.Clock()
+
 # Program Loop
 exit_flag = False # Set flag to false since we want the window to stay open
 boardDimensions = (6, 7) # 42 squares
@@ -182,10 +182,6 @@ while not exit_flag: # Loop through until flag is set to True
                     playerWon = 2
                     pygame.time.set_timer(pygame.USEREVENT, 0)
 
-
-    # State Logic
-    # playerTurn(boardDimensions, playerOneCoords)
-
     # Draw Screens
     window.fill(grey)
     boardDimensionsInPixels = drawCheckerboard(window, boardDimensions)
@@ -197,5 +193,4 @@ while not exit_flag: # Loop through until flag is set to True
         diceRollSkipDraw(diceRolePlayer1 == 5)
     playerWonDraw(playerWon > 0, playerWon)
     pygame.display.flip()
-    # clock.tick(5)
 pygame.quit()
