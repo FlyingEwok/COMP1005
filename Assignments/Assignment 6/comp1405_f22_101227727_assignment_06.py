@@ -33,6 +33,16 @@ def drawCheckerboard(window: pygame.surface, boardDimensions: tuple) -> tuple:
     # Draw board
     window.blit(board, (0, 0))
 
+    myFont = pygame.font.SysFont('Comic Sans MS', 30)
+    counter = 1
+    for y in range(boardDimensions[0]):
+        for x in range(boardDimensions[1]):
+            counterDraw = myFont.render(f"{counter}", False, (255,255,255))
+            window.blit(counterDraw, ((((boardWidth/verticalSquareCount)/2) + (x*(boardWidth/verticalSquareCount)), y*(boardHeight/horizontalSquareCount))))
+            counter += 1
+
+
+
     return (boardWidth, boardHeight)
 
 def drawPlayerObject(window: pygame.surface, boardDimensions: tuple, boardDimensionsInPixels: tuple, playerCoords: tuple, player1: bool) -> None:
@@ -96,7 +106,11 @@ def playerWonDraw(hasPlayerWon: bool, player):
 def playerTurn(boardDimensions: tuple, playerCoords: tuple) -> tuple:
     """Initiates player one turn"""
     diceRole = diceRoll()
-    newCoords = playerMove(boardDimensions, playerCoords, diceRole)
+    if not diceRole == 5:
+        newCoords = playerMove(boardDimensions, playerCoords, diceRole)
+    else:
+        newCoords = playerCoords
+    
     playerWon = hasPlayerWon(boardDimensions, playerCoords)
     if playerWon:
         newCoords = (6, 5)
@@ -119,6 +133,15 @@ def diceRollDrawCount(diceRoll: int, player1: bool) -> None:
         window.blit(diceRollNumDraw, (961, 0))
     else:
         window.blit(diceRollNumDraw, (961, 50))
+
+def diceRollSkipDraw(player1: bool) -> None:
+    """Draw diceroll num on screen"""
+    pygame.font.init()
+    myFont = pygame.font.SysFont('Comic Sans MS', 30)
+    diceRolePlayer = "Player 1" if player1 else "Player 2"
+    diceRollNumDraw = myFont.render(f"{diceRolePlayer} Rolled 5: Skip Turn", False, (255,255,255))
+    window.blit(diceRollNumDraw, (961, 150))
+
 
 # Main
 window = createPygameWindow()
@@ -170,6 +193,8 @@ while not exit_flag: # Loop through until flag is set to True
     drawPlayerObject(window, boardDimensions, boardDimensionsInPixels, playerTwoCoords, False) # Player Two
     diceRollDrawCount(diceRolePlayer1, True)
     diceRollDrawCount(diceRolePlayer2, False)
+    if diceRolePlayer1 == 5 or diceRolePlayer2 == 5:
+        diceRollSkipDraw(diceRolePlayer1 == 5)
     playerWonDraw(playerWon > 0, playerWon)
     pygame.display.flip()
     # clock.tick(5)
