@@ -21,12 +21,12 @@ def drawCircleOfFace(win_sfc: pygame.surface) -> tuple:
 
     return circlePos
 
-def draw_eyes() -> None:
-    """Draws a pair of eyes on to the screen, given the circles centre is (150,250) and the circle radius is 100"""
+def draw_eyes(x: int, y: int) -> None:
+    """Draws a pair of eyes on to the screen, given the circles centre is (150,250)"""
     BLACK = (0,0,0)
     WHITE = (255,255,255)
 
-    circleCentreCoords = (150,250)
+    circleCentreCoords = (x,y) #(150,250)
 
     # Eye Position
     leftEyePos = (circleCentreCoords[0]-35,circleCentreCoords[1]-35) #((((pygame.Surface.get_width(win_sfc))/2) - 35),(((pygame.Surface.get_height(win_sfc))/2) - 35))
@@ -48,13 +48,12 @@ def draw_eyes() -> None:
     pygame.draw.circle(win_sfc,BLACK, leftEyePupilPos, 5)
     pygame.draw.circle(win_sfc, BLACK, rightEyePupilPos, 5)
 
-def draw_hat() -> str:
-    """Draws a hat on the screen, given the circles centre is (250,350) and the circle radius is 100"""
+def draw_hat(x: int, y: int) -> str:
     BLACK = (0,0,0)
     WHITE = (255,255,255)
     RED = (255,0,0)
 
-    circleCentreCoords = (250,350)
+    circleCentreCoords =(x,y) #(250,350)
 
     # Middle Top of head coords
     leftTopOfHead = (circleCentreCoords[0] - 100) #(((pygame.Surface.get_width(win_sfc))/2) - 100)
@@ -70,7 +69,7 @@ def draw_hat() -> str:
     return description
 
 def draw_mouth(x: int, y: int) -> None:
-    """Draws a mouth given the circle centre passed in, and that circle has a 100 radius"""
+    """Draws a mouth given the circles centre and the circle is 100 radius"""
     BLACK = (0,0,0)
     RED = (255,0,0)
     WHITE = (255,255,255)
@@ -96,11 +95,9 @@ while not exit_flag: # Loop through until flag is set to True
             #saveFrameAsImage(window, imageFileName) # Save the last frame as image (In this case only frame)
             exit_flag = True # Set flag to true so program can terminate
     win_sfc.fill((255,255,255)) # Fill background with white
-    
-    # TEST CASES
-    #circleCentreCoord = drawCircleOfFace(win_sfc) # Grabs the centre of the test circle, as well as draws to the screen
-    #draw_eyes()
-    #draw_hat()
-    #draw_mouth(circleCentreCoord[0],circleCentreCoord[1])  # Needs circleCentreCoords
+    circleCentreCoord = drawCircleOfFace(win_sfc) 
+    draw_eyes(circleCentreCoord[0],circleCentreCoord[1])
+    draw_hat(circleCentreCoord[0],circleCentreCoord[1])
+    draw_mouth(circleCentreCoord[0],circleCentreCoord[1])   
 
     pygame.display.flip()
