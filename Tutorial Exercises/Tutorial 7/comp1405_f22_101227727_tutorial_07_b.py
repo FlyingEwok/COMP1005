@@ -1,10 +1,5 @@
 # Nicholas Garth 101227727
 
-def __compareRowLength(matrix1Row: list, matrix2Row: list) -> int:
-    # Check if each Row is the same length as the first row
-    matrix1RowLength = len(matrix1Row) # Save the length of the first row
-
-
 def isValidMatrix(matrix: list) -> bool:
     """Runs a series of checks to determine if the matrix is a valid numeric matrix, returns a boolean"""
     row1Checked = False # Initialize check to verify the first row has been completed
